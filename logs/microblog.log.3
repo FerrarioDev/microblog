@@ -1,0 +1,97 @@
+2023-08-21 12:42:57,997 ERROR: Exception on /user/George [GET] [in /home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: followers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/app/routes.py", line 86, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/kloke/python_dev/flask_micro_blog/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/kloke/python_dev/flask_micro_blog/app/templates/base.html", line 31, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/app/templates/user.html", line 11, in block 'content'
+    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/dynamic.py", line 178, in count
+    return self._generate(sess).count()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 3131, in count
+    self._legacy_from_self(col).enable_eagerloads(False).scalar()
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 2824, in scalar
+    ret = self.one()
+          ^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 2797, in one
+    return self._iter().one()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/query.py", line 2846, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2246, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2141, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+    return meth(
+           ^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 483, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/kloke/python_dev/flask_micro_blog/venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen 
+FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1]
+[parameters: (3,)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
